@@ -1,0 +1,22 @@
+{
+  "projectName": "static-webs-deploy",
+  "sourceVersion": "develop",
+  "environmentVariablesOverride": [
+    {
+      "name": "VERSION",
+      "value": "_DEPLOY_VERSION_",
+      "type": "PLAINTEXT"
+    },
+    {
+      "name": "APP_NAME",
+      "value": "_APP_NAME_",
+      "type": "PLAINTEXT"
+    },
+    {
+      "name": "ID_DISTRIBUTION",
+      "value": "_ID_DISTRIBUTION_",
+      "type": "PLAINTEXT"
+    }
+  ],
+  "sourceLocationOverride": "https://bitbucket.org/icprocessor/paigo-infra.git"
+}

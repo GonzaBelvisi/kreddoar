@@ -1,0 +1,10 @@
+{
+    "name": "paigo-kr-landing",
+    "short_name": "Paigo",
+    "version": "0.0.2",
+    "display": "standalone",
+    "orientation": "portrait",
+    "scope": "./",
+    "lang": "es-Es",
+    "start_url": "/"
+}

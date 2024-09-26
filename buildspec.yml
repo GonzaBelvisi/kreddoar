@@ -1,0 +1,28 @@
+version: 0.2
+env:
+  variables:
+    S3_BUCKET: "paigo-web-static"
+    PROJECT: "paigo-kr-landing"
+
+phases:
+  pre_build:
+    commands:
+      - echo starting Build at `date`
+      - SSO_MIDDLEWARE_NAME=$(cat src/manifest.json | grep name | head -1 | awk -F':' '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]')
+      - SSO_MIDDLEWARE_VERSION=$(cat src/manifest.json | grep version | head -1 | awk -F':' '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]')
+      - VERSION=$SSO_MIDDLEWARE_NAME-$SSO_MIDDLEWARE_VERSION
+      - echo Version is :$VERSION
+  build:
+    commands:
+      - echo creating ZIP object for the landing $PROJECT...
+      - FECHA_TAG=$(date +%F-%H%m)
+      - cd src/
+      - NAME_FILE=$VERSION-$FECHA_TAG.zip
+      - zip -r $NAME_FILE .
+      - echo creating finish  `date`
+  post_build:
+    commands:
+      - echo Uploading object to S3-Bucket $S3_BUCKET ...
+      - aws s3 cp $NAME_FILE s3://$S3_BUCKET/$PROJECT/$NAME_FILE --metadata "{\"x-amz-meta-cms-id\":\"$CODEBUILD_RESOLVED_SOURCE_VERSION\"}"
+      - aws s3api put-object-tagging --bucket $S3_BUCKET --key $PROJECT/$NAME_FILE --tagging '{"TagSet":[{"Key":"Name","Value":"'$PROJECT'"},{"Key":"Date","Value":"'$CODEBUILD_START_TIME'"},{"Key":"Author","Value":"'$CODEBUILD_INITIATOR'"}]}'
+      - echo Upload finish  `date`
