@@ -1,4 +1,32 @@
- /* Estilo del modal (fondo difuminado) */
+/* Ocultar el menú hamburguesa en pantallas grandes (mayores a 991px) */
+@media (min-width: 992px) {
+  .menu-collapse {
+    display: none;
+  }
+  .u-nav-container {
+    display: block; /* Mostrar menú estándar */
+  }
+}
+
+/* Mostrar el menú hamburguesa en pantallas pequeñas (menores a 991px) */
+@media (max-width: 991px) {
+  .menu-collapse {
+    display: block; /* Mostrar hamburguesa */
+  }
+  .u-nav-container {
+    display: none; /* Ocultar menú estándar */
+  }
+  .u-nav-container-collapse {
+    display: none; /* Ocultar el contenedor del menú */
+  }
+  .u-nav-container-collapse.active {
+    display: block; /* Mostrar menú desplegable al hacer clic en la hamburguesa */
+  }
+}
+
+
+
+/* Estilo del modal (fondo difuminado) */
 .modal {
   display: none;
   position: fixed;

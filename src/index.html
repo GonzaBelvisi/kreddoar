@@ -80,17 +80,25 @@
         </div>
         <div class="u-custom-menu u-nav-container-collapse">
           <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
-            <div class="u-inner-container-layout u-sidenav-overflow">
-              <div class="u-menu-close"></div>
-              <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2">
-                <li class="u-nav-item"><a class="u-button-style u-nav-link"
-                    href="mailto:preguntas@kreddo.com.ar">Contacto</a>
-                </li>
-              </ul>
-            </div>
+              <div class="u-inner-container-layout u-sidenav-overflow">
+                  <div class="u-menu-close"></div>
+                  <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2">
+                      <li class="u-nav-item"><a class="u-button-style u-nav-link"
+                          href="mailto:preguntas@kreddo.com.ar">Contacto</a>
+                      </li>
+                      <li class="u-nav-item"><a class="u-button-style u-nav-link"
+                        href="mailto:preguntas@kreddo.com.ar">Baja/Arrepentimiento</a>
+                    </li>
+                      <li class="u-nav-item"><a class="u-button-style u-nav-link"
+                        href="informacion-usuario-financiero.html">Proteccion de Usuarios Financieros</a>
+                    </li>
+                      <!-- Otros enlaces -->
+                  </ul>
+              </div>
           </div>
           <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
-        </div>
+      </div>
+      
       </nav>
     </div>
   </header>
@@ -151,6 +159,41 @@
       </div>
     </div>
   </section>
+
+  <script>
+    // Abrir el menú hamburguesa en pantallas pequeñas
+    document.querySelector('.menu-collapse a').addEventListener('click', function (e) {
+      e.preventDefault();
+      document.querySelector('.u-nav-container-collapse').classList.toggle('active');
+    });
+  
+    // Cerrar el menú hamburguesa cuando se hace clic en 'x'
+    document.querySelector('.u-menu-close').addEventListener('click', function () {
+      document.querySelector('.u-nav-container-collapse').classList.remove('active');
+    });
+  
+    // Cerrar el menú hamburguesa cuando se hace clic fuera del área del menú
+    document.querySelector('.u-menu-overlay').addEventListener('click', function () {
+      document.querySelector('.u-nav-container-collapse').classList.remove('active');
+    });
+
+    $(document).ready(function() {
+    // Activa el menú hamburguesa en pantallas pequeñas
+    $('.menu-collapse a').click(function(e) {
+        e.preventDefault();
+        $('.u-nav-container-collapse').toggleClass('active');  // Añade la clase 'active' para desplegar el menú
+    });
+
+    // Cierra el menú cuando se hace clic en la 'X' (cerrar)
+    $('.u-menu-close').click(function() {
+        $('.u-nav-container-collapse').removeClass('active');  // Quita la clase 'active' para colapsar el menú
+    });
+});
+
+  </script>
+  
+
+  
 
 
 
